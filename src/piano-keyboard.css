@@ -1,13 +1,16 @@
 .piano-keyboard {
   position: relative;
+  color: inherit;
+  background-color: inherit;
 }
 
 .piano-keyboard > .key {
-  border: 1px solid;
+  border: 1px solid currentColor;
   padding: 0;
   margin: 0;
   position: absolute;
   top: 0;
+  color: inherit;
 }
 
 .piano-keyboard > .key:focus {
@@ -15,13 +18,11 @@
 }
 
 .piano-keyboard > .white.key {
-  border-color: currentColor;
-  background-color: #fff;
+  background-color: transparent;
   height: 100%;
 }
 
 .piano-keyboard > .black.key {
-  border-color: currentColor;
   background-color: currentColor;
   height: 61.8133989%;
   z-index: 1;
@@ -29,5 +30,4 @@
 
 .piano-keyboard > .key.-active {
   background-color: Highlight;
-  border-color: HighlightText;
 }
