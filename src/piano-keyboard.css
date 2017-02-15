@@ -2,15 +2,17 @@
   position: relative;
   color: inherit;
   background-color: inherit;
+  min-height: 16px;
 }
 
 .piano-keyboard > .key {
-  border: 1px solid currentColor;
+  border: 0.5px solid currentColor;
   padding: 0;
   margin: 0;
   position: absolute;
   top: 0;
   color: inherit;
+  cursor: pointer;
 }
 
 .piano-keyboard > .key:focus {
