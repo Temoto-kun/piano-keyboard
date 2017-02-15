@@ -1,0 +1,21 @@
+{
+  "name": "@theoryofnekomata/piano-keyboard",
+  "version": "0.3.0",
+  "description": "Simple piano keyboard in JavaScript",
+  "main": "bin/piano-keyboard.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "control",
+    "piano",
+    "keyboard",
+    "music"
+  ],
+  "author": "TheoryOfNekomata <allan.crisostomo@outlook.com>",
+  "license": "MIT",
+  "devDependencies": {},
+  "dependencies": {
+    "webmidi": "^2.0.0-rc.4"
+  }
+}

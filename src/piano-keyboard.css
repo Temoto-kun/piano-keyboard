@@ -1,0 +1,33 @@
+.piano-keyboard {
+  position: relative;
+}
+
+.piano-keyboard > .key {
+  border: 1px solid;
+  padding: 0;
+  margin: 0;
+  position: absolute;
+  top: 0;
+}
+
+.piano-keyboard > .key:focus {
+  outline: none;
+}
+
+.piano-keyboard > .white.key {
+  border-color: currentColor;
+  background-color: #fff;
+  height: 100%;
+}
+
+.piano-keyboard > .black.key {
+  border-color: currentColor;
+  background-color: currentColor;
+  height: 61.8133989%;
+  z-index: 1;
+}
+
+.piano-keyboard > .key.-active {
+  background-color: Highlight;
+  border-color: HighlightText;
+}

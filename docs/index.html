@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en-PH">
+<head>
+  <meta charset="UTF-8">
+  <title>Piano Keyboard Demo</title>
+  <link rel="stylesheet" type="text/css" href="../src/piano-keyboard.css">
+</head>
+<body>
+
+<h1>Piano Keyboard</h1>
+
+<div id="piano-keyboard" class="piano-keyboard" style="width: 200px; height: 50px;" data-white-key-width="11"></div>
+
+<script src="../node_modules/webmidi/webmidi.min.js"></script>
+<script src="../src/piano-keyboard.js"></script>
+
+<script>
+  document.getElementById('piano-keyboard').addEventListener('noteon', function (e) {
+      console.log(e.pitch + e.octave);
+  });
+
+//  WebMidi.enable(function (err) {
+//      if (!!err) {
+//          return;
+//      }
+//
+//      console.log(WebMidi);
+//  }, true);
+</script>
+</body>
+</html>
