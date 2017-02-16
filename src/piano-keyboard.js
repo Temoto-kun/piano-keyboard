@@ -8,8 +8,10 @@
     var sharpSuffix = '#',
         keys = 12,
         whiteKeys = 7,
+        keyboardVel = 100,
         grandPianoStartKey = 1,
         grandPianoEndKey = 88,
+        maxVel = 127,
         bindings = {
             'standard': {
                 81: 40,
@@ -111,7 +113,6 @@
         if (isNaN(whiteKeyWidth)) {
             switch (kbdData.whiteKeyWidth) {
                 case 'auto':
-                case 'balanced':
                     return '%';
                 default:
                     break;
@@ -124,7 +125,7 @@
     function getBlackKeyWidth(kbdData) {
         var blackKeyWidth = getWhiteKeyWidth(kbdData) * whiteKeys / keys;
 
-        if (kbdData.whiteKeyWidth === 'balanced') {
+        if (kbdData.keyProportion === 'balanced') {
             return getWhiteKeyWidth(kbdData);
         }
 
@@ -139,9 +140,10 @@
         if (isNaN(whiteKeyWidth)) {
             switch (kbdData.whiteKeyWidth) {
                 case 'auto':
+                    if (kbdData.keyProportion === 'balanced') {
+                        return 100 / (endKey - startKey + 1);
+                    }
                     return 100 / getWhiteKeysInRange(startKey, endKey);
-                case 'balanced':
-                    return 100 / (endKey - startKey + 1);
                 default:
                     break;
             }
@@ -156,7 +158,7 @@
             ratio = getLeftPositionRatio(startKey),
             octave = getOctave(startKey);
 
-        return whiteKeyWidth * whiteKeys * ratio + (octave * whiteKeyWidth * whiteKeys);
+        return (whiteKeyWidth * whiteKeys * ratio) + (octave * whiteKeyWidth * whiteKeys);
     }
 
     function getWhiteKeysInRange(startKey, endKey) {
@@ -187,20 +189,21 @@
             ratio = getLeftPositionRatio(i),
             octave = getOctave(i);
 
-        if (kbdData.whiteKeyWidth === 'balanced') {
+        if (kbdData.keyProportion === 'balanced') {
+            // TODO fix for balanced
             switch (getNormalizedPitchNumber(i)) {
                 case 1:
                 case 3:
                 case 6:
                 case 8:
                 case 11:
-                    return (i - 1) * whiteKeyWidth - whiteKeyWidth / 2;
+                    return ((i - 1) * whiteKeyWidth - whiteKeyWidth / 2) - getHorizontalOffset(kbdData);
                 default:
                     break;
             }
-            return (i - 1) * whiteKeyWidth;
+            return ((i - 1) * whiteKeyWidth) - getHorizontalOffset(kbdData);
         }
-        return whiteKeyWidth * whiteKeys * ratio + (octave * whiteKeyWidth * whiteKeys) - getHorizontalOffset(kbdData);
+        return (whiteKeyWidth * whiteKeys * ratio + (octave * whiteKeyWidth * whiteKeys)) - getHorizontalOffset(kbdData);
     }
 
     function generateStyleForWhiteKeys(kbdData) {
@@ -222,7 +225,7 @@
         }
         css += '.piano-keyboard[data-kbd-id="' + kbdData.kbdId + '"]>.white.key{width:' + whiteKeyWidth + widthUnit + '}';
 
-        if (kbdData.whiteKeyWidth === 'balanced') {
+        if (kbdData.keyProportion === 'balanced') {
             css += '.piano-keyboard[data-kbd-id="' + kbdData.kbdId + '"]>.white.key[data-pitch="C"],.piano-keyboard[data-kbd-id="' + kbdData.kbdId + '"]>.white.key[data-pitch="E"],.piano-keyboard[data-kbd-id="' + kbdData.kbdId + '"]>.white.key[data-pitch="F"],.piano-keyboard[data-kbd-id="' + kbdData.kbdId + '"]>.white.key[data-pitch="B"]{width:' + (whiteKeyWidth * 1.5) + widthUnit + '}';
             css += '.piano-keyboard[data-kbd-id="' + kbdData.kbdId + '"]>.white.key[data-pitch="D"],.piano-keyboard[data-kbd-id="' + kbdData.kbdId + '"]>.white.key[data-pitch="G"],.piano-keyboard[data-kbd-id="' + kbdData.kbdId + '"]>.white.key[data-pitch="A"]{width:' + (whiteKeyWidth * 2) + widthUnit + '}';
 
@@ -275,11 +278,11 @@
         }
     }
 
-    function doNoteOn(keyEl) {
+    function paintNoteOn(keyEl) {
         keyEl.classList.add('-active');
     }
 
-    function doNoteOff(keyEl) {
+    function paintNoteOff(keyEl) {
         keyEl.classList.remove('-active');
     }
 
@@ -292,6 +295,7 @@
             case 'noteon':
             case 'noteoff':
                 event.key = parseInt(detail.key.dataset.key);
+                event.velocity = parseInt(detail.velocity);
                 event.octave = parseInt(detail.key.dataset.octave);
                 event.pitch = detail.key.dataset.pitch;
                 break;
@@ -300,21 +304,24 @@
         }
 
         kbdEl.dispatchEvent(event);
+
         return event;
     }
 
     function bindEvents(kbdEl) {
+        var mouseVel = 0;
+
         function onNoteOn(e) {
             var kbdEvent;
 
             e.preventDefault();
-            if (e.buttons === 1 && !e.target.classList.contains('-active')) {
-                this.focus();
-                kbdEvent = triggerKeyboardEvent(this, 'noteon', { key: e.target });
+            if (e.buttons === 1 && !e.target.classList.contains('-active') && e.target.classList.contains('key')) {
+                kbdEl.focus();
+                kbdEvent = triggerKeyboardEvent(kbdEl, 'noteon', { key: e.target, velocity: e.velocity });
                 if (kbdEvent.defaultPrevented) {
                     return;
                 }
-                doNoteOn(e.target);
+                paintNoteOn(e.target);
             }
         }
 
@@ -322,18 +329,17 @@
             var kbdEvent;
 
             e.preventDefault();
-            if (e.target.classList.contains('-active')) {
-                kbdEvent = triggerKeyboardEvent(this, 'noteoff', { key: e.target });
+            if (e.target.classList.contains('-active') && e.target.classList.contains('key')) {
+                kbdEvent = triggerKeyboardEvent(kbdEl, 'noteoff', { key: e.target, velocity: e.velocity });
                 if (kbdEvent.defaultPrevented) {
                     return;
                 }
-                doNoteOff(e.target);
+                paintNoteOff(e.target);
             }
         }
 
         function onKeyboardKeydown(e) {
-            var kbdEl = this,
-                bindingsMap = kbdEl.dataset.bindingsMap.toLowerCase(),
+            var bindingsMap = kbdEl.dataset.bindingsMap.toLowerCase(),
                 key,
                 keyEl,
                 kbdEvent;
@@ -356,17 +362,16 @@
                 return;
             }
 
-            kbdEvent = triggerKeyboardEvent(this, 'noteon', { key: keyEl });
+            kbdEvent = triggerKeyboardEvent(kbdEl, 'noteon', { key: keyEl, velocity: keyboardVel });
             if (kbdEvent.defaultPrevented) {
                 return;
             }
 
-            doNoteOn(keyEl);
+            paintNoteOn(keyEl);
         }
 
         function onKeyboardKeyup(e) {
-            var kbdEl = this,
-                bindingsMap = kbdEl.dataset.bindingsMap.toLowerCase(),
+            var bindingsMap = kbdEl.dataset.bindingsMap.toLowerCase(),
                 key,
                 keyEl,
                 kbdEvent;
@@ -389,19 +394,42 @@
                 return;
             }
 
-            kbdEvent = triggerKeyboardEvent(this, 'noteoff', { key: keyEl });
+            kbdEvent = triggerKeyboardEvent(kbdEl, 'noteoff', { key: keyEl, velocity: keyboardVel });
             if (kbdEvent.defaultPrevented) {
                 return;
             }
-            doNoteOff(keyEl);
+            paintNoteOff(keyEl);
+        }
+
+        function onMouseDown(e) {
+            var maxY = parseFloat(window.getComputedStyle(e.target).height);
+
+            mouseVel = Math.floor(maxVel * (e.offsetY / maxY));
+            e.velocity = mouseVel;
+            onNoteOn(e);
+        }
+
+        function onMouseUp(e) {
+            e.velocity = mouseVel;
+            onNoteOff(e);
+        }
+
+        function onMouseEnter(e) {
+            e.velocity = mouseVel;
+            onNoteOn(e);
+        }
+
+        function onMouseLeave(e) {
+            e.velocity = mouseVel;
+            onNoteOff(e);
         }
 
         kbdEl.addEventListener('keydown', onKeyboardKeydown);
         kbdEl.addEventListener('keyup', onKeyboardKeyup);
-        kbdEl.addEventListener('mousedown', onNoteOn, true);
-        kbdEl.addEventListener('mouseenter', onNoteOn, true);
-        kbdEl.addEventListener('mouseup', onNoteOff, true);
-        kbdEl.addEventListener('mouseleave', onNoteOff, true);
+        kbdEl.addEventListener('mousedown', onMouseDown, true);
+        kbdEl.addEventListener('mouseenter', onMouseEnter, true);
+        kbdEl.addEventListener('mouseup', onMouseUp, true);
+        kbdEl.addEventListener('mouseleave', onMouseLeave, true);
     }
 
     function normalizeKeyboardData(kbdEl) {

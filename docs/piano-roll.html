@@ -7,14 +7,16 @@
   <style>
     .piano-keyboard {
       height: 50px;
+      /*transform: rotate(-90deg) translateX(-100%);*/
+      /*transform-origin: top left;*/
     }
   </style>
 </head>
 <body>
 
-<h1>Piano Keyboard</h1>
+<h1>Piano Roll</h1>
 
-<div id="piano-keyboard" class="piano-keyboard" data-white-key-width="auto"></div>
+<div id="piano-keyboard" class="piano-keyboard" data-white-key-width="8" data-start-key="-20" data-end-key="107" data-key-proportion="balanced"></div>
 
 <script src="../node_modules/webmidi/webmidi.min.js"></script>
 <script src="../src/piano-keyboard.js"></script>
