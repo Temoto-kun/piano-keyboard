@@ -12,6 +12,7 @@
         grandPianoStartKey = 1,
         grandPianoEndKey = 88,
         maxVel = 127,
+        kbdClass = 'piano-keyboard',
         bindings = {
             'standard': {
                 81: 40,
@@ -158,6 +159,10 @@
             ratio = getLeftPositionRatio(startKey),
             octave = getOctave(startKey);
 
+        if (kbdData.keyProportion === 'balanced') {
+            return (startKey - 1) * whiteKeyWidth;
+        }
+
         return (whiteKeyWidth * whiteKeys * ratio) + (octave * whiteKeyWidth * whiteKeys);
     }
 
@@ -224,6 +229,14 @@
             })(i);
         }
         css += '.piano-keyboard[data-kbd-id="' + kbdData.kbdId + '"]>.white.key{width:' + whiteKeyWidth + widthUnit + '}';
+
+        if (widthUnit !== '%') {
+            if (kbdData.keyProportion === 'balanced') {
+                css += '.piano-keyboard[data-kbd-id="' + kbdData.kbdId + '"]{width:' + ((endKey - startKey + 1) * whiteKeyWidth) + widthUnit + '}'
+            } else {
+                css += '.piano-keyboard[data-kbd-id="' + kbdData.kbdId + '"]{width:' + (getWhiteKeysInRange(startKey, endKey) * whiteKeyWidth) + widthUnit + '}'
+            }
+        }
 
         if (kbdData.keyProportion === 'balanced') {
             css += '.piano-keyboard[data-kbd-id="' + kbdData.kbdId + '"]>.white.key[data-pitch="C"],.piano-keyboard[data-kbd-id="' + kbdData.kbdId + '"]>.white.key[data-pitch="E"],.piano-keyboard[data-kbd-id="' + kbdData.kbdId + '"]>.white.key[data-pitch="F"],.piano-keyboard[data-kbd-id="' + kbdData.kbdId + '"]>.white.key[data-pitch="B"]{width:' + (whiteKeyWidth * 1.5) + widthUnit + '}';
@@ -316,7 +329,9 @@
 
             e.preventDefault();
             if (e.buttons === 1 && !e.target.classList.contains('-active') && e.target.classList.contains('key')) {
-                kbdEl.focus();
+                if (kbdEl.tabIndex === 0) {
+                    kbdEl.focus();
+                }
                 kbdEvent = triggerKeyboardEvent(kbdEl, 'noteon', { key: e.target, velocity: e.velocity });
                 if (kbdEvent.defaultPrevented) {
                     return;
@@ -457,6 +472,9 @@
     }
 
     function addKeyboardUiAttributes(kbdEl) {
+        if (kbdEl.hasAttribute('tabindex')) {
+            return;
+        }
         kbdEl.setAttribute('tabindex', 0);
     }
 
@@ -470,16 +488,18 @@
             styleParent.appendChild(styleEl);
         }
         styleEl.innerHTML = generateStyle(kbdEl.dataset);
+
+        if (kbdEl.classList.contains(kbdClass)) {
+            return;
+        }
+        kbdEl.classList.add(kbdClass);
     }
 
-    function initializeKeyboard(kbdEl) {
+    window.PianoKeyboard = function PianoRoll(kbdEl) {
         normalizeKeyboardData(kbdEl);
         initializeKeyboardStyle(kbdEl);
         generateKeys(kbdEl);
         bindEvents(kbdEl);
         addKeyboardUiAttributes(kbdEl);
-    }
-
-    Array.prototype.slice.call(document.querySelectorAll('.piano-keyboard'))
-        .forEach(initializeKeyboard);
+    };
 })();

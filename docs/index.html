@@ -14,40 +14,11 @@
 
 <h1>Piano Keyboard</h1>
 
-<div id="piano-keyboard" class="piano-keyboard" data-white-key-width="auto"></div>
+<div id="piano-keyboard" data-white-key-width="auto"></div>
 
 <script src="../node_modules/webmidi/webmidi.min.js"></script>
 <script src="../src/piano-keyboard.js"></script>
+<script src="script.js"></script>
 
-<script>
-//  document.getElementById('piano-keyboard').addEventListener('noteon', function (e) {
-//    console.log(e.pitch + e.octave);
-//  });
-
-  WebMidi.enable(function (err) {
-      var output;
-
-      if (!!err) {
-          return;
-      }
-
-      output = WebMidi.outputs[0];
-
-      if (!output) {
-          return;
-      }
-
-      Array.prototype.slice.call(document.querySelectorAll('.piano-keyboard'))
-          .forEach(function initializePianoKeyboardSound(kbd, i) {
-              kbd.addEventListener('noteon', function onNoteOn(e) {
-                  output.playNote(e.key + 20, i + 1, { velocity: e.velocity / 127 });
-              });
-
-              kbd.addEventListener('noteoff', function onNoteOff(e) {
-                  output.stopNote(e.key + 20, i + 1, { velocity: e.velocity / 127 });
-              });
-          });
-  });
-</script>
 </body>
 </html>
