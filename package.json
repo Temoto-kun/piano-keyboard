@@ -1,6 +1,6 @@
 {
   "name": "@theoryofnekomata/piano-keyboard",
-  "version": "0.3.0",
+  "version": "1.0.0",
   "description": "Simple piano keyboard in JavaScript",
   "main": "bin/piano-keyboard.js",
   "scripts": {
@@ -14,8 +14,10 @@
   ],
   "author": "TheoryOfNekomata <allan.crisostomo@outlook.com>",
   "license": "MIT",
-  "devDependencies": {},
-  "dependencies": {
-    "webmidi": "^2.0.0-rc.4"
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "gulp-concat": "^2.6.1",
+    "gulp-csso": "^2.0.0",
+    "gulp-uglify": "^2.0.1"
   }
 }

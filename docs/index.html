@@ -17,7 +17,7 @@
 </div>
 <div class="piano" data-white-key-width="auto"></div>
 
-<h2>Fixed-size keys</h2>
+<h2>Equal-size keys</h2>
 <div>
   HTML:
   <pre><code>&lt;div class="piano" data-white-key-width="auto" data-key-proportion="balanced"&gt;&lt;/div&gt;</code></pre>
@@ -88,15 +88,42 @@
 <h2>Labeled keys (Custom naming)</h2>
 <div>
   CSS:
-  <pre><code>.piano.-labeled &gt; .key[data-pitch="C"][data-octave="4"]::after {
-  content: attr(data-pitch);
+  <pre><code>.piano.-labeled-doremi &gt; .key[data-pitch="C"]::after {
+  content: 'Do';
+}
+
+.piano.-labeled-doremi &gt; .key[data-pitch="D"]::after {
+  content: 'Re';
+}
+
+.piano.-labeled-doremi &gt; .key[data-pitch="E"]::after {
+  content: 'Mi';
+}
+
+.piano.-labeled-doremi &gt; .key[data-pitch="F"]::after {
+  content: 'Fa';
+}
+
+.piano.-labeled-doremi &gt; .key[data-pitch="G"]::after {
+  content: 'So';
+}
+
+.piano.-labeled-doremi &gt; .key[data-pitch="A"]::after {
+  content: 'La';
+}
+
+.piano.-labeled-doremi &gt; .key[data-pitch="B"]::after {
+  content: 'Ti';
 }</code></pre>
 </div>
 <div class="piano -labeled-doremi" data-white-key-width="auto"></div>
 
 <script src="../node_modules/webmidi/webmidi.min.js"></script>
-<script src="../src/piano-keyboard.js"></script>
-<script src="script.js"></script>
+<script src="../bin/piano-keyboard.min.js"></script>
+
+<script src="init.js"></script>
+<!-- This is for adding sounds with WebMIDI, see http://npmjs.com/package/webmidi -->
+<!--<script src="sounds.js"></script>-->
 
 </body>
 </html>

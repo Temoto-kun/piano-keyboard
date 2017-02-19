@@ -1,3 +1,9 @@
+/**
+ * Script description.
+ * @author TheoryOfNekomata
+ * @date 2017-02-19
+ */
+
 (function () {
     var pianoKeyboards = Array.prototype.slice.call(document.querySelectorAll('.piano')),
         output,
@@ -12,14 +18,12 @@
 
         output = WebMidi.outputs[0];
 
+        if (!output) {
+            return;
+        }
+
         pianoKeyboards
             .forEach(function initializePianoKeyboard(pianoKeyboard) {
-                new window.PianoKeyboard(pianoKeyboard);
-
-                if (!output) {
-                    return;
-                }
-
                 pianoKeyboard.addEventListener('noteon', function onNoteOn(e) {
                     output.playNote(e.key + keyNumberAdjust, channel, { velocity: e.velocity / maxVelocity });
                 });
