@@ -30,6 +30,7 @@ body {
 
 .content-container {
   max-width: 1000px;
+  min-width: 1000px;
   padding: 0 32px;
   margin: 32px auto;
 }
@@ -169,11 +170,12 @@ a {
 .tab-container.-vertical > .panels {
   display: table-cell;
   vertical-align: top;
-}
-
-.tab-container.-vertical > .panels {
   border-top: none;
   border-left: 1px solid #3f98d0;
+}
+
+.tab-container.-vertical > .panels > .tabpanel {
+  width: 100%;
 }
 
 .source-code {
@@ -181,8 +183,8 @@ a {
 }
 
 pre {
-  padding: 16px;
-  background-color: #eee;
+  width: 0;
+  margin: 0;
 }
 
 h1, h2, h3 {
@@ -193,11 +195,19 @@ code {
   display: inline-block;
   background-color: #eee;
   color: #cf966f;
-  padding: 4px 8px;
+  padding: 2px 8px;
 }
 
 pre > code {
   display: inline;
   background-color: transparent;
   padding: 0;
+}
+
+.code-container {
+  overflow-x: auto;
+  transform: translate3d(0,0,0);
+  width: 100%;
+  padding: 16px;
+  background-color: #eee;
 }
