@@ -96,10 +96,10 @@
             <div class="panels">
               <section class="tabpanel -active" id="/sections/labeled-keys/all">
                 <h3>All</h3>
-                <div class="piano -labeled" data-white-key-width="auto"></div>
+                <div class="piano -labeled" data-start-key="16" data-end-key="64" data-white-key-width="auto"></div>
                 <div class="source-code">
                   HTML:
-                  <pre><code>&lt;div class="piano" data-white-key-width="auto" data-white-key-width="auto"&gt;&lt;/div&gt;</code></pre>
+                  <pre><code>&lt;div class="piano" data-start-key="16" data-end-key="64" data-white-key-width="auto" data-white-key-width="auto"&gt;&lt;/div&gt;</code></pre>
                   CSS:
                   <pre><code>.piano.-labeled &gt; .key::after {
   content: attr(data-pitch) attr(data-octave);
@@ -108,10 +108,10 @@
               </section>
               <section class="tabpanel" id="/sections/labeled-keys/white-keys">
                 <h3>White keys only</h3>
-                <div class="piano -labeled-white" data-white-key-width="auto"></div>
+                <div class="piano -labeled-white" data-start-key="16" data-end-key="64" data-white-key-width="auto"></div>
                 <div class="source-code">
                   HTML:
-                  <pre><code>&lt;div class="piano" data-white-key-width="auto" data-white-key-width="auto"&gt;&lt;/div&gt;</code></pre>
+                  <pre><code>&lt;div class="piano" data-start-key="16" data-end-key="64" data-white-key-width="auto" data-white-key-width="auto"&gt;&lt;/div&gt;</code></pre>
                   CSS:
                   <pre><code>.piano.-labeled &gt; .white.key::after {
   content: attr(data-pitch);
@@ -120,10 +120,10 @@
               </section>
               <section class="tabpanel" id="/sections/labeled-keys/black-keys">
                 <h3>Black keys only</h3>
-                <div class="piano -labeled-black" data-white-key-width="auto"></div>
+                <div class="piano -labeled-black" data-start-key="16" data-end-key="64" data-white-key-width="auto"></div>
                 <div class="source-code">
                   HTML:
-                  <pre><code>&lt;div class="piano" data-white-key-width="auto" data-white-key-width="auto"&gt;&lt;/div&gt;</code></pre>
+                  <pre><code>&lt;div class="piano" data-start-key="16" data-end-key="64" data-white-key-width="auto" data-white-key-width="auto"&gt;&lt;/div&gt;</code></pre>
                   CSS:
                   <pre><code>.piano.-labeled &gt; .black.key::after {
   content: attr(data-pitch);
@@ -132,10 +132,10 @@
               </section>
               <section class="tabpanel" id="/sections/labeled-keys/pitch-class">
                 <h3>Specific pitch class only</h3>
-                <div class="piano -labeled-c" data-white-key-width="auto"></div>
+                <div class="piano -labeled-c" data-start-key="16" data-end-key="64" data-white-key-width="auto"></div>
                 <div class="source-code">
                   HTML:
-                  <pre><code>&lt;div class="piano" data-white-key-width="auto" data-white-key-width="auto"&gt;&lt;/div&gt;</code></pre>
+                  <pre><code>&lt;div class="piano" data-start-key="16" data-end-key="64" data-white-key-width="auto" data-white-key-width="auto"&gt;&lt;/div&gt;</code></pre>
                   CSS:
                   <pre><code>.piano.-labeled &gt; .key[data-pitch="C"]::after {
   content: attr(data-pitch) attr(data-octave);
@@ -144,10 +144,10 @@
               </section>
               <section class="tabpanel" id="/sections/labeled-keys/octave">
                 <h3>Specific octave only</h3>
-                <div class="piano -labeled-octave" data-white-key-width="auto"></div>
+                <div class="piano -labeled-octave" data-start-key="16" data-end-key="64" data-white-key-width="auto"></div>
                 <div class="source-code">
                   HTML:
-                  <pre><code>&lt;div class="piano" data-white-key-width="auto" data-white-key-width="auto"&gt;&lt;/div&gt;</code></pre>
+                  <pre><code>&lt;div class="piano" data-start-key="16" data-end-key="64" data-white-key-width="auto" data-white-key-width="auto"&gt;&lt;/div&gt;</code></pre>
                   CSS:
                   <pre><code>.piano.-labeled &gt; .key[data-octave="4"]::after {
   content: attr(data-pitch);
@@ -156,10 +156,10 @@
               </section>
               <section class="tabpanel" id="/sections/labeled-keys/key">
                 <h3>Specific key only</h3>
-                <div class="piano -labeled-c4" data-white-key-width="auto"></div>
+                <div class="piano -labeled-c4" data-start-key="16" data-end-key="64" data-white-key-width="auto"></div>
                 <div class="source-code">
                   HTML:
-                  <pre><code>&lt;div class="piano" data-white-key-width="auto" data-white-key-width="auto"&gt;&lt;/div&gt;</code></pre>
+                  <pre><code>&lt;div class="piano" data-start-key="16" data-end-key="64" data-white-key-width="auto" data-white-key-width="auto"&gt;&lt;/div&gt;</code></pre>
                   CSS:
                   <pre><code>.piano.-labeled &gt; .key[data-pitch="C"][data-octave="4"]::after {
   content: attr(data-pitch);
@@ -168,10 +168,10 @@
               </section>
               <section class="tabpanel" id="/sections/labeled-keys/custom">
                 <h3>Custom labels</h3>
-                <div class="piano -labeled-doremi" data-white-key-width="auto"></div>
+                <div class="piano -labeled-doremi" data-start-key="16" data-end-key="64" data-white-key-width="auto"></div>
                 <div class="source-code">
                   HTML:
-                  <pre><code>&lt;div class="piano" data-white-key-width="auto" data-white-key-width="auto"&gt;&lt;/div&gt;</code></pre>
+                  <pre><code>&lt;div class="piano" data-start-key="16" data-end-key="64" data-white-key-width="auto" data-white-key-width="auto"&gt;&lt;/div&gt;</code></pre>
                   CSS:
                   <pre><code>.piano.-labeled &gt; .key[data-pitch="C"]::after {
   content: 'Do';

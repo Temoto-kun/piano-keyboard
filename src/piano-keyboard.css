@@ -16,6 +16,8 @@
   color: inherit;
   cursor: pointer;
   box-sizing: border-box;
+  font-family: inherit;
+  overflow: hidden;
 }
 
 .piano-keyboard > .key:focus {
@@ -45,10 +47,10 @@
   bottom: 0;
   width: 100%;
   text-align: center;
+  font-family: inherit;
 }
 
 .piano-keyboard > .black.key::after {
-  font-size: 12.5%;
   transform: rotate(-90deg);
   color: #fff;
   bottom: auto;
