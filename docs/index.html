@@ -4,17 +4,95 @@
   <meta charset="UTF-8">
   <title>Piano Keyboard Demo</title>
   <link rel="stylesheet" type="text/css" href="../src/piano-keyboard.css">
-  <style>
-    .piano-keyboard {
-      height: 50px;
-    }
-  </style>
+  <link rel="stylesheet" type="text/css" href="style.css">
 </head>
 <body>
 
 <h1>Piano Keyboard</h1>
 
-<div id="piano-keyboard" data-white-key-width="auto"></div>
+<h2>Automatically-sized keys</h2>
+<div>
+  HTML:
+  <pre><code>&lt;div class="piano" data-white-key-width="auto" data-white-key-width="auto"&gt;&lt;/div&gt;</code></pre>
+</div>
+<div class="piano" data-white-key-width="auto"></div>
+
+<h2>Fixed-size keys</h2>
+<div>
+  HTML:
+  <pre><code>&lt;div class="piano" data-white-key-width="auto" data-key-proportion="balanced"&gt;&lt;/div&gt;</code></pre>
+</div>
+<div class="piano" data-white-key-width="auto" data-key-proportion="balanced"></div>
+
+<h2>Custom key range</h2>
+<div>
+  HTML:
+  <pre><code>&lt;div class="piano" data-white-key-width="auto" data-start-key="33" data-end-key="59"&gt;&lt;/div&gt;</code></pre>
+</div>
+<div class="piano" data-white-key-width="auto" data-start-key="33" data-end-key="59"></div>
+
+<h2>Labeled keys</h2>
+<div>
+  CSS:
+  <pre><code>.piano.-labeled &gt; .key::after {
+  content: attr(data-pitch) attr(data-octave);
+}</code></pre>
+</div>
+<div class="piano -labeled" data-white-key-width="auto"></div>
+
+<h2>Labeled keys (white keys only)</h2>
+<div>
+  CSS:
+  <pre><code>.piano.-labeled-white &gt; .white.key::after {
+  content: attr(data-pitch);
+}</code></pre>
+</div>
+<div class="piano -labeled-white" data-white-key-width="auto"></div>
+
+<h2>Labeled keys (black keys only)</h2>
+<div>
+  CSS:
+  <pre><code>.piano.-labeled-black &gt; .black.key::after {
+  content: attr(data-pitch);
+}</code></pre>
+</div>
+<div class="piano -labeled-black" data-white-key-width="auto"></div>
+
+<h2>Labeled keys (Specific pitch class only)</h2>
+<div>
+  CSS:
+  <pre><code>.piano.-labeled &gt; .key[data-pitch="C"]::after {
+  content: attr(data-pitch) attr(data-octave);
+}</code></pre>
+</div>
+<div class="piano -labeled-c" data-white-key-width="auto"></div>
+
+<h2>Labeled keys (Specific octave only)</h2>
+<div>
+  CSS:
+  <pre><code>.piano.-labeled &gt; .key[data-octave="4"]::after {
+  content: attr(data-pitch);
+}</code></pre>
+</div>
+<div class="piano -labeled-octave" data-white-key-width="auto"></div>
+
+<h2>Labeled keys (Specific key only)</h2>
+<div>
+  CSS:
+  <pre><code>.piano.-labeled &gt; .key[data-pitch="C"][data-octave="4"]::after {
+  content: attr(data-pitch);
+}</code></pre>
+</div>
+<div class="piano -labeled-c4" data-white-key-width="auto"></div>
+
+<h2>Labeled keys (Custom naming)</h2>
+<div>
+  CSS:
+  <pre><code>.piano.-labeled &gt; .key[data-pitch="C"][data-octave="4"]::after {
+  content: attr(data-pitch);
+}</code></pre>
+</div>
+<div class="piano -labeled-doremi" data-white-key-width="auto"></div>
 
 <script src="../node_modules/webmidi/webmidi.min.js"></script>
 <script src="../src/piano-keyboard.js"></script>

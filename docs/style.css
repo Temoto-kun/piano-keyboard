@@ -1,0 +1,63 @@
+.piano {
+  height: 65px;
+}
+
+.piano.-labeled > .key::after {
+  content: attr(data-pitch) attr(data-octave);
+}
+
+.piano.-labeled-white > .white.key::after {
+  content: attr(data-pitch);
+}
+
+.piano.-labeled-black > .black.key::after {
+  content: attr(data-pitch);
+}
+
+.piano.-labeled-c > .key[data-pitch="C"]::after {
+  content: attr(data-pitch) attr(data-octave);
+}
+
+.piano.-labeled-octave > .key[data-octave="4"]::after {
+  content: attr(data-pitch);
+}
+
+.piano.-labeled-c4 > .key[data-pitch="C"][data-octave="4"]::after {
+  content: attr(data-pitch);
+}
+
+.piano.-labeled-doremi > .key[data-pitch="C"]::after {
+  content: 'Do';
+}
+
+.piano.-labeled-doremi > .key[data-pitch="D"]::after {
+  content: 'Re';
+}
+
+.piano.-labeled-doremi > .key[data-pitch="E"]::after {
+  content: 'Mi';
+}
+
+.piano.-labeled-doremi > .key[data-pitch="F"]::after {
+  content: 'Fa';
+}
+
+.piano.-labeled-doremi > .key[data-pitch="G"]::after {
+  content: 'So';
+}
+
+.piano.-labeled-doremi > .key[data-pitch="A"]::after {
+  content: 'La';
+}
+
+.piano.-labeled-doremi > .key[data-pitch="B"]::after {
+  content: 'Ti';
+}
+
+/*#piano-keyboard > .key[data-pitch="C"]::after {*/
+  /*content: attr(data-pitch) attr(data-octave);*/
+/*}*/
+
+/*#piano-keyboard > .key[data-pitch="C"][data-octave="4"]::after {*/
+  /*content: attr(data-pitch);*/
+/*}*/
