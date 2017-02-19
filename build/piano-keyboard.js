@@ -709,11 +709,53 @@
             kbdEl.classList.add(kbdClass);
         }
 
+        /**
+         *
+         */
+        function addMethods() {
+            kbdEl.playNote = function playNote(noteInfo) {
+                var keyEl = kbdEl.querySelector('[data-key="' + noteInfo.key + '"]'),
+                    detail;
+
+                if (!keyEl || keyEl.classList.contains('-active')) {
+                    return kbdEl;
+                }
+
+                detail = { key: keyEl };
+                detail.velocity = noteInfo.velocity;
+                detail.pan = noteInfo.pan;
+
+                triggerKeyboardEvent('noteon', detail);
+                paintNoteOn(keyEl);
+
+                return kbdEl;
+            };
+
+            kbdEl.stopNote = function stopNote(noteInfo) {
+                var keyEl = kbdEl.querySelector('[data-key="' + noteInfo.key + '"]'),
+                    detail;
+
+                if (!keyEl || keyEl.classList.contains('-active')) {
+                    return kbdEl;
+                }
+
+                detail = { key: keyEl };
+                detail.velocity = noteInfo.velocity;
+                detail.pan = noteInfo.pan;
+
+                triggerKeyboardEvent('noteon', detail);
+                paintNoteOn(keyEl);
+
+                return kbdEl;
+            };
+        }
+
         normalizeKeyboardData();
         initializeKeyboardStyle();
         generateKeys();
         bindEvents();
         addKeyboardUiAttributes();
+        addMethods();
     };
 });
 

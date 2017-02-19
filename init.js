@@ -4,7 +4,7 @@
  * @date 2017-02-19
  */
 
-(function () {
+(function init() {
     var pianoKeyboards = Array.prototype.slice.call(document.querySelectorAll('.piano'));
 
     pianoKeyboards

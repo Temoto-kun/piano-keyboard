@@ -2,93 +2,161 @@
 <html lang="en-PH">
 <head>
   <meta charset="UTF-8">
-  <title>Piano Keyboard Demo</title>
+  <title>@theoryofnekomata/piano-keyboard</title>
   <link rel="stylesheet" type="text/css" href="src/piano-keyboard.css">
   <link rel="stylesheet" type="text/css" href="style.css">
 </head>
 <body>
 
-<h1>Piano Keyboard</h1>
+<div class="tab-container">
+  <nav class="tabs tab-items">
+    <ul class="items">
+      <li class="item tab-item -active">
+        <a class="link" href="#/sections/auto-size-keys">Automatically-sized keys</a>
+      </li><li class="item tab-item">
+        <a class="link" href="#/sections/equal-size-keys">Equal-size keys</a>
+      </li><li class="item tab-item">
+        <a class="link" href="#/sections/custom-key-range">Custom key range</a>
+      </li><li class="item tab-item">
+        <a class="link" href="#/sections/labeled-keys">Labeled keys</a>
+      </li>
+    </ul>
+  </nav>
+  <div class="panels">
+    <section class="tabpanel -active" id="/sections/auto-size-keys">
+      <h1>Automatically-sized keys</h1>
+      <p>You may set the white key width to whatever value you want (in pixels), but setting it to <code>auto</code> is recommended.</p>
+      <div class="piano" data-white-key-width="auto"></div>
+      <div class="source-code">
+        HTML:
+        <pre><code>&lt;div class="piano" data-white-key-width="auto" data-white-key-width="auto"&gt;&lt;/div&gt;</code></pre>
+      </div>
+    </section>
 
-<h2>Automatically-sized keys</h2>
-<div>
-  HTML:
-  <pre><code>&lt;div class="piano" data-white-key-width="auto" data-white-key-width="auto"&gt;&lt;/div&gt;</code></pre>
-</div>
-<div class="piano" data-white-key-width="auto"></div>
+    <section class="tabpanel" id="/sections/equal-size-keys">
+      <h1>Equal-size keys</h1>
+      <p>The stems of the white keys have the same width as the black keys.</p>
+      <div class="piano" data-white-key-width="auto" data-key-proportion="balanced"></div>
+      <div class="source-code">
+        HTML:
+        <pre><code>&lt;div class="piano" data-white-key-width="auto" data-key-proportion="balanced"&gt;&lt;/div&gt;</code></pre>
+      </div>
+    </section>
 
-<h2>Equal-size keys</h2>
-<div>
-  HTML:
-  <pre><code>&lt;div class="piano" data-white-key-width="auto" data-key-proportion="balanced"&gt;&lt;/div&gt;</code></pre>
-</div>
-<div class="piano" data-white-key-width="auto" data-key-proportion="balanced"></div>
+    <section class="tabpanel" id="/sections/custom-key-range">
+      <h1>Custom key range</h1>
+      <p>This keyboard is height-adjusted, so it becomes larger. Its white key width is set to <code>auto</code> so the keys will resize according to the keyboard's width.</p>
+      <div class="piano" style="height: 250px;" data-white-key-width="auto" data-start-key="33" data-end-key="59"></div>
+      <div class="source-code">
+        HTML:
+        <pre><code>&lt;div class="piano" data-white-key-width="auto" data-start-key="33" data-end-key="59"&gt;&lt;/div&gt;</code></pre>
+      </div>
+    </section>
 
-<h2>Custom key range</h2>
-<div>
-  HTML:
-  <pre><code>&lt;div class="piano" data-white-key-width="auto" data-start-key="33" data-end-key="59"&gt;&lt;/div&gt;</code></pre>
-</div>
-<div class="piano" data-white-key-width="auto" data-start-key="33" data-end-key="59"></div>
-
-<h2>Labeled keys</h2>
-<div>
-  CSS:
-  <pre><code>.piano.-labeled &gt; .key::after {
+    <section class="tabpanel" id="/sections/labeled-keys">
+      <h1>Labeled keys</h1>
+      <p>In case you want to have the keys labeled, you may do so by applying the appropriate CSS.</p>
+      <div class="tab-container -vertical">
+        <nav class="tabs tab-items">
+          <ul class="items">
+            <li class="item tab-item -active">
+              <a class="link" href="#/sections/labeled-keys/all">All</a>
+            </li><li class="item tab-item">
+              <a class="link" href="#/sections/labeled-keys/white-keys">White keys only</a>
+            </li><li class="item tab-item">
+              <a class="link" href="#/sections/labeled-keys/black-keys">Black keys only</a>
+            </li><li class="item tab-item">
+              <a class="link" href="#/sections/labeled-keys/pitch-class">Specific pitch class only</a>
+            </li><li class="item tab-item">
+              <a class="link" href="#/sections/labeled-keys/octave">Specific octave only</a>
+            </li><li class="item tab-item">
+              <a class="link" href="#/sections/labeled-keys/key">Specific key only</a>
+            </li><li class="item tab-item">
+              <a class="link" href="#/sections/labeled-keys/custom">Custom labels</a>
+            </li>
+          </ul>
+        </nav>
+        <div class="panels">
+          <section class="tabpanel -active" id="/sections/labeled-keys/all">
+            <h2>All</h2>
+            <div class="piano -labeled" data-white-key-width="auto"></div>
+            <div class="source-code">
+              HTML:
+              <pre><code>&lt;div class="piano" data-white-key-width="auto" data-white-key-width="auto"&gt;&lt;/div&gt;</code></pre>
+              CSS:
+              <pre><code>.piano.-labeled &gt; .key::after {
   content: attr(data-pitch) attr(data-octave);
 }</code></pre>
-</div>
-<div class="piano -labeled" data-white-key-width="auto"></div>
-
-<h2>Labeled keys (white keys only)</h2>
-<div>
-  CSS:
-  <pre><code>.piano.-labeled-white &gt; .white.key::after {
+            </div>
+          </section>
+          <section class="tabpanel" id="/sections/labeled-keys/white-keys">
+            <h2>White keys only</h2>
+            <div class="piano -labeled-white" data-white-key-width="auto"></div>
+            <div class="source-code">
+              HTML:
+              <pre><code>&lt;div class="piano" data-white-key-width="auto" data-white-key-width="auto"&gt;&lt;/div&gt;</code></pre>
+              CSS:
+              <pre><code>.piano.-labeled &gt; .white.key::after {
   content: attr(data-pitch);
 }</code></pre>
-</div>
-<div class="piano -labeled-white" data-white-key-width="auto"></div>
-
-<h2>Labeled keys (black keys only)</h2>
-<div>
-  CSS:
-  <pre><code>.piano.-labeled-black &gt; .black.key::after {
+            </div>
+          </section>
+          <section class="tabpanel" id="/sections/labeled-keys/black-keys">
+            <h2>Black keys only</h2>
+            <div class="piano -labeled-black" data-white-key-width="auto"></div>
+            <div class="source-code">
+              HTML:
+              <pre><code>&lt;div class="piano" data-white-key-width="auto" data-white-key-width="auto"&gt;&lt;/div&gt;</code></pre>
+              CSS:
+              <pre><code>.piano.-labeled &gt; .black.key::after {
   content: attr(data-pitch);
 }</code></pre>
-</div>
-<div class="piano -labeled-black" data-white-key-width="auto"></div>
-
-<h2>Labeled keys (Specific pitch class only)</h2>
-<div>
-  CSS:
-  <pre><code>.piano.-labeled &gt; .key[data-pitch="C"]::after {
+            </div>
+          </section>
+          <section class="tabpanel" id="/sections/labeled-keys/pitch-class">
+            <h2>Specific pitch class only</h2>
+            <div class="piano -labeled-c" data-white-key-width="auto"></div>
+            <div class="source-code">
+              HTML:
+              <pre><code>&lt;div class="piano" data-white-key-width="auto" data-white-key-width="auto"&gt;&lt;/div&gt;</code></pre>
+              CSS:
+              <pre><code>.piano.-labeled &gt; .key[data-pitch="C"]::after {
   content: attr(data-pitch) attr(data-octave);
 }</code></pre>
-</div>
-<div class="piano -labeled-c" data-white-key-width="auto"></div>
-
-<h2>Labeled keys (Specific octave only)</h2>
-<div>
-  CSS:
-  <pre><code>.piano.-labeled &gt; .key[data-octave="4"]::after {
+            </div>
+          </section>
+          <section class="tabpanel" id="/sections/labeled-keys/octave">
+            <h2>Specific octave only</h2>
+            <div class="piano -labeled-octave" data-white-key-width="auto"></div>
+            <div class="source-code">
+              HTML:
+              <pre><code>&lt;div class="piano" data-white-key-width="auto" data-white-key-width="auto"&gt;&lt;/div&gt;</code></pre>
+              CSS:
+              <pre><code>.piano.-labeled &gt; .key[data-octave="4"]::after {
   content: attr(data-pitch);
 }</code></pre>
-</div>
-<div class="piano -labeled-octave" data-white-key-width="auto"></div>
-
-<h2>Labeled keys (Specific key only)</h2>
-<div>
-  CSS:
-  <pre><code>.piano.-labeled &gt; .key[data-pitch="C"][data-octave="4"]::after {
+            </div>
+          </section>
+          <section class="tabpanel" id="/sections/labeled-keys/key">
+            <h2>Specific key only</h2>
+            <div class="piano -labeled-c4" data-white-key-width="auto"></div>
+            <div class="source-code">
+              HTML:
+              <pre><code>&lt;div class="piano" data-white-key-width="auto" data-white-key-width="auto"&gt;&lt;/div&gt;</code></pre>
+              CSS:
+              <pre><code>.piano.-labeled &gt; .key[data-pitch="C"][data-octave="4"]::after {
   content: attr(data-pitch);
 }</code></pre>
-</div>
-<div class="piano -labeled-c4" data-white-key-width="auto"></div>
-
-<h2>Labeled keys (Custom naming)</h2>
-<div>
-  CSS:
-  <pre><code>.piano.-labeled-doremi &gt; .key[data-pitch="C"]::after {
+            </div>
+          </section>
+          <section class="tabpanel" id="/sections/labeled-keys/custom">
+            <h2>Custom labels</h2>
+            <div class="piano -labeled-doremi" data-white-key-width="auto"></div>
+            <div class="source-code">
+              HTML:
+              <pre><code>&lt;div class="piano" data-white-key-width="auto" data-white-key-width="auto"&gt;&lt;/div&gt;</code></pre>
+              CSS:
+              <pre><code>.piano.-labeled &gt; .key[data-pitch="C"]::after {
   content: 'Do';
 }
 
@@ -115,13 +183,19 @@
 .piano.-labeled-doremi &gt; .key[data-pitch="B"]::after {
   content: 'Ti';
 }</code></pre>
+            </div>
+          </section>
+        </div>
+      </div>
+    </section>
+  </div>
 </div>
-<div class="piano -labeled-doremi" data-white-key-width="auto"></div>
 
 <script src="node_modules/webmidi/webmidi.min.js"></script>
 <script src="build/piano-keyboard.min.js"></script>
 
 <script src="init.js"></script>
+<script src="tabs.js"></script>
 <!-- This is for adding sounds with WebMIDI, see http://npmjs.com/package/webmidi -->
 <!--<script src="sounds.js"></script>-->
 

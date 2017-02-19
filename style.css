@@ -1,3 +1,32 @@
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+html {
+  background-color: #fff;
+  color: #666;
+  font-family: 'Open Sans', sans-serif;
+}
+
+body {
+  margin: 0;
+}
+
+head {
+  display: block !important;
+  color: inherit;
+}
+
+title {
+  display: block !important;
+  color: inherit;
+  text-align: center;
+  font-size: 2em;
+  margin-top: 2em;
+  margin-bottom: 2em;
+  font-weight: 200;
+}
+
 .piano {
   height: 65px;
 }
@@ -54,10 +83,88 @@
   content: 'Ti';
 }
 
-/*#piano-keyboard > .key[data-pitch="C"]::after {*/
-  /*content: attr(data-pitch) attr(data-octave);*/
-/*}*/
+.tab-container > .panels > .tabpanel {
+  display: none;
+  padding: 16px 32px;
+}
 
-/*#piano-keyboard > .key[data-pitch="C"][data-octave="4"]::after {*/
-  /*content: attr(data-pitch);*/
-/*}*/
+.tab-container > .panels > .tabpanel.-active {
+  display: block;
+}
+
+.tab-container > .panels {
+  border-top: 1px solid #3f98d0;
+}
+
+.tab-items {
+  display: block;
+  white-space: nowrap;
+  overflow-x: auto;
+  transform: translate3d(0,0,0);
+}
+
+.tab-items > .items {
+  padding-left: 0;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.tab-items > .items > .item {
+  display: inline-block;
+}
+
+.-vertical > .tab-items > .items > .item {
+  display: block;
+}
+
+.tab-item > .link {
+  display: block;
+  padding: 8px 16px;
+  color: #3f98d0;
+  border-bottom: 5px solid transparent;
+  text-decoration: none;
+}
+
+.-vertical .tab-item > .link {
+  border-bottom: none;
+  border-right: 5px solid transparent;
+}
+
+.tab-item.-active > .link {
+  /*background-color: #3f98d0;*/
+  /*color: #fff;*/
+  border-color: #3f98d0;
+}
+
+.tab-container.-vertical {
+  display: table;
+  width: 100%;
+}
+
+.tab-container.-vertical > .tabs {
+  display: table-cell;
+  width: 1px;
+  vertical-align: top;
+}
+
+.tab-container.-vertical > .panels {
+  display: table-cell;
+  vertical-align: top;
+}
+
+.tab-container.-vertical > .panels {
+  border-top: none;
+  border-left: 1px solid #3f98d0;
+}
+
+.source-code {
+  margin-top: 2em;
+}
+
+pre {
+  padding: 16px;
+}
+
+h1, h2 {
+  font-weight: 200;
+}
