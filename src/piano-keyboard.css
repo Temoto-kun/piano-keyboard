@@ -3,6 +3,7 @@
   color: inherit;
   background-color: inherit;
   min-height: 16px;
+  border-right: 0.5px solid currentColor;
 }
 
 .piano-keyboard > .key {
@@ -22,6 +23,7 @@
 .piano-keyboard > .white.key {
   background-color: transparent;
   height: 100%;
+  border-right: none;
 }
 
 .piano-keyboard > .black.key {

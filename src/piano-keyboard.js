@@ -72,17 +72,17 @@
 
     function getLeftPositionRatio(i) {
         var ratios = [
-                (8 / keys),
+                (8 / keys) + 0.0075,
                 (5 / whiteKeys),
                 (10 / keys),
                 (6 / whiteKeys),
                 0,
                 (1 / keys),
                 (1 / whiteKeys),
-                (3 / keys),
+                (3 / keys) + 0.015,
                 (2 / whiteKeys),
                 (3 / whiteKeys),
-                (6 / keys),
+                (6 / keys) + 0.015,
                 (4 / whiteKeys)
             ];
 
@@ -354,16 +354,22 @@
         }
 
         function onKeyboardKeydown(e) {
-            var bindingsMap = kbdEl.dataset.bindingsMap.toLowerCase(),
+            var bindingsMap,
                 key,
                 keyEl,
                 kbdEvent;
 
-            e.preventDefault();
+            if (e.shiftKey || e.ctrlKey || e.altKey || e.metaKey) {
+                return;
+            }
+
+            bindingsMap = kbdEl.dataset.bindingsMap.toLowerCase();
 
             if (typeof bindingsMap === 'undefined') {
                 return;
             }
+
+            e.preventDefault();
 
             key = bindings[bindingsMap][e.which];
 
@@ -386,16 +392,22 @@
         }
 
         function onKeyboardKeyup(e) {
-            var bindingsMap = kbdEl.dataset.bindingsMap.toLowerCase(),
+            var bindingsMap,
                 key,
                 keyEl,
                 kbdEvent;
 
-            e.preventDefault();
+            if (e.shiftKey || e.ctrlKey || e.altKey || e.metaKey) {
+                return;
+            }
+
+            bindingsMap = kbdEl.dataset.bindingsMap.toLowerCase();
 
             if (typeof bindingsMap === 'undefined') {
                 return;
             }
+
+            e.preventDefault();
 
             key = bindings[bindingsMap][e.which];
 
