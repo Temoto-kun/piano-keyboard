@@ -13,14 +13,14 @@ gulp.task('scripts:compress', function (cb) {
     gulp.src(['./src/**/*.js'])
         .pipe(concat('piano-keyboard.min.js'))
         .pipe(uglify())
-        .pipe(gulp.dest('./bin'))
+        .pipe(gulp.dest('./build'))
         .on('end', cb);
 });
 
 gulp.task('scripts:copy', function (cb) {
     gulp.src(['./src/**/*.js'])
         .pipe(concat('piano-keyboard.js'))
-        .pipe(gulp.dest('./bin'))
+        .pipe(gulp.dest('./build'))
         .on('end', cb);
 });
 
@@ -30,14 +30,14 @@ gulp.task('styles:compress', function (cb) {
     gulp.src(['./src/**/*.css'])
         .pipe(concat('piano-keyboard.css'))
         .pipe(csso())
-        .pipe(gulp.dest('./bin'))
+        .pipe(gulp.dest('./build'))
         .on('end', cb);
 });
 
 gulp.task('styles:copy', function (cb) {
     gulp.src(['./src/**/*.css'])
         .pipe(concat('piano-keyboard.css'))
-        .pipe(gulp.dest('./bin'))
+        .pipe(gulp.dest('./build'))
         .on('end', cb);
 });
 

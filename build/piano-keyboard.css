@@ -1,0 +1,59 @@
+.piano-keyboard {
+  position: relative;
+  color: inherit;
+  background-color: inherit;
+  min-height: 16px;
+  border-right: 0.5px solid currentColor;
+  box-sizing: border-box;
+}
+
+.piano-keyboard > .key {
+  border: 0.5px solid currentColor;
+  padding: 0;
+  margin: 0;
+  position: absolute;
+  top: 0;
+  color: inherit;
+  cursor: pointer;
+  box-sizing: border-box;
+}
+
+.piano-keyboard > .key:focus {
+  outline: none;
+}
+
+.piano-keyboard > .white.key {
+  background-color: transparent;
+  height: 100%;
+  border-right: none;
+}
+
+.piano-keyboard > .black.key {
+  background-color: currentColor;
+  height: 61.8133989%;
+  z-index: 1;
+}
+
+.piano-keyboard > .key.-active {
+  background-color: Highlight;
+}
+
+.piano-keyboard > .key::after {
+  font-size: 50%;
+  display: block;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  text-align: center;
+}
+
+.piano-keyboard > .black.key::after {
+  font-size: 12.5%;
+  transform: rotate(-90deg);
+  color: #fff;
+  bottom: auto;
+}
+
+.piano-keyboard > .black.key.-active::after {
+  color: inherit;
+}
