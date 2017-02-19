@@ -6,10 +6,7 @@ html {
   background-color: #fff;
   color: #333;
   font-family: 'Open Sans', sans-serif;
-}
-
-body {
-  margin: 0;
+  line-height: 1.8;
 }
 
 head {
@@ -25,6 +22,24 @@ title {
   margin-top: 2em;
   margin-bottom: 2em;
   font-weight: 200;
+}
+
+body {
+  margin: 0;
+}
+
+.content-container {
+  max-width: 1000px;
+  padding: 0 32px;
+  margin: 32px auto;
+}
+
+.main-content > .lead {
+  font-size: 1.5em;
+  font-weight: 200;
+  text-align: center;
+  margin-top: -2em;
+  margin-bottom: 3em;
 }
 
 .piano {
@@ -117,6 +132,10 @@ title {
   display: block;
 }
 
+a {
+  color: #3f98d0;
+}
+
 .tab-item > .link {
   display: block;
   padding: 8px 16px;
@@ -163,8 +182,22 @@ title {
 
 pre {
   padding: 16px;
+  background-color: #eee;
 }
 
 h1, h2 {
   font-weight: 200;
+}
+
+code {
+  display: inline-block;
+  background-color: #eee;
+  color: #cf966f;
+  padding: 4px 8px;
+}
+
+pre > code {
+  display: inline;
+  background-color: transparent;
+  padding: 0;
 }
