@@ -1,6 +1,6 @@
 {
   "name": "@theoryofnekomata/piano-keyboard",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Simple piano keyboard in JavaScript",
   "main": "bin/piano-keyboard.js",
   "scripts": {
