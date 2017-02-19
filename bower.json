@@ -1,0 +1,23 @@
+{
+  "name": "piano-keyboard",
+  "description": "Simple piano keyboard in JavaScript",
+  "main": "bin/piano-keyboard.js",
+  "authors": [
+    "TheoryOfNekomata <allan.crisostomo@outlook.com>"
+  ],
+  "license": "MIT",
+  "keywords": [
+    "control",
+    "piano",
+    "keyboard",
+    "music"
+  ],
+  "homepage": "https://github.com/Temoto-kun/piano-keyboard",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
