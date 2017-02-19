@@ -743,7 +743,7 @@
                 detail.velocity = noteInfo.velocity;
                 detail.pan = noteInfo.pan;
 
-                triggerKeyboardEvent('noteon', detail);
+                triggerKeyboardEvent('noteoff', detail);
                 paintNoteOn(keyEl);
 
                 return kbdEl;
