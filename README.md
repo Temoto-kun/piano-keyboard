@@ -17,6 +17,8 @@ Bower:
     
 ## Usage
 
+In your HTML:
+
 ```html
 <!-- ... -->
 
@@ -25,6 +27,7 @@ Bower:
 <!-- ... -->
 ```
 
+In your JavaScript:
 ```javascript
 // ...
 var pianoElement = document.getElementById('piano-element');
