@@ -211,3 +211,33 @@ pre > code {
   padding: 16px;
   background-color: #eee;
 }
+
+textarea {
+  resize: none;
+  width: 100%;
+}
+
+.split-container {
+  display: table;
+  width: 100%;
+  margin: 0 -16px;
+}
+
+.split-container > .panel {
+  display: table-cell;
+  width: 1px;
+  padding: 0 16px;
+}
+
+.labeled-control {
+  display: block;
+  font-weight: normal;
+}
+
+.labeled-control > .label {
+  display: block;
+}
+
+.labeled-control > .control {
+  display: block;
+}

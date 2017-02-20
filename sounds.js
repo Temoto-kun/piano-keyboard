@@ -24,6 +24,10 @@
 
         pianoKeyboards
             .forEach(function initializePianoKeyboard(pianoKeyboard) {
+                if (!pianoKeyboard.classList.contains('-sound')) {
+                    return;
+                }
+
                 pianoKeyboard.addEventListener('noteon', function onNoteOn(e) {
                     output.playNote(e.key + keyNumberAdjust, channel, { velocity: e.velocity / maxVelocity });
                 });

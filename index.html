@@ -36,6 +36,8 @@
             <a class="link" href="#/sections/custom-key-range">Custom key range</a>
           </li><li class="item tab-item">
             <a class="link" href="#/sections/labeled-keys">Labeled keys</a>
+          </li><li class="item tab-item">
+            <a class="link" href="#/sections/events">Events</a>
           </li>
         </ul>
       </nav>
@@ -106,7 +108,7 @@
                 <div class="source-code">
                   <p>HTML:</p>
                   <div class="code-container">
-                    <pre><code>&lt;div class="piano" data-start-key="16" data-end-key="64" data-white-key-width="auto" data-white-key-width="auto"&gt;&lt;/div&gt;</code></pre>
+                    <pre><code>&lt;div class="piano" data-start-key="16" data-end-key="64" data-white-key-width="auto"&gt;&lt;/div&gt;</code></pre>
                   </div>
                   <p>CSS:</p>
                   <div class="code-container">
@@ -122,7 +124,7 @@
                 <div class="source-code">
                   <p>HTML:</p>
                   <div class="code-container">
-                    <pre><code>&lt;div class="piano" data-start-key="16" data-end-key="64" data-white-key-width="auto" data-white-key-width="auto"&gt;&lt;/div&gt;</code></pre>
+                    <pre><code>&lt;div class="piano" data-start-key="16" data-end-key="64" data-white-key-width="auto"&gt;&lt;/div&gt;</code></pre>
                   </div>
                   <p>CSS:</p>
                   <div class="code-container">
@@ -138,7 +140,7 @@
                 <div class="source-code">
                   <p>HTML:</p>
                   <div class="code-container">
-                    <pre><code>&lt;div class="piano" data-start-key="16" data-end-key="64" data-white-key-width="auto" data-white-key-width="auto"&gt;&lt;/div&gt;</code></pre>
+                    <pre><code>&lt;div class="piano" data-start-key="16" data-end-key="64" data-white-key-width="auto"&gt;&lt;/div&gt;</code></pre>
                   </div>
                   <p>CSS:</p>
                   <div class="code-container">
@@ -154,7 +156,7 @@
                 <div class="source-code">
                   <p>HTML:</p>
                   <div class="code-container">
-                    <pre><code>&lt;div class="piano" data-start-key="16" data-end-key="64" data-white-key-width="auto" data-white-key-width="auto"&gt;&lt;/div&gt;</code></pre>
+                    <pre><code>&lt;div class="piano" data-start-key="16" data-end-key="64" data-white-key-width="auto"&gt;&lt;/div&gt;</code></pre>
                   </div>
                   <p>CSS:</p>
                   <div class="code-container">
@@ -170,7 +172,7 @@
                 <div class="source-code">
                   <p>HTML:</p>
                   <div class="code-container">
-                    <pre><code>&lt;div class="piano" data-start-key="16" data-end-key="64" data-white-key-width="auto" data-white-key-width="auto"&gt;&lt;/div&gt;</code></pre>
+                    <pre><code>&lt;div class="piano" data-start-key="16" data-end-key="64" data-white-key-width="auto"&gt;&lt;/div&gt;</code></pre>
                   </div>
                   <p>CSS:</p>
                   <div class="code-container">
@@ -186,7 +188,7 @@
                 <div class="source-code">
                   <p>HTML:</p>
                   <div class="code-container">
-                    <pre><code>&lt;div class="piano" data-start-key="16" data-end-key="64" data-white-key-width="auto" data-white-key-width="auto"&gt;&lt;/div&gt;</code></pre>
+                    <pre><code>&lt;div class="piano" data-start-key="16" data-end-key="64" data-white-key-width="auto"&gt;&lt;/div&gt;</code></pre>
                   </div>
                   <p>CSS:</p>
                   <div class="code-container">
@@ -202,7 +204,7 @@
                 <div class="source-code">
                   <p>HTML:</p>
                   <div class="code-container">
-                    <pre><code>&lt;div class="piano" data-start-key="16" data-end-key="64" data-white-key-width="auto" data-white-key-width="auto"&gt;&lt;/div&gt;</code></pre>
+                    <pre><code>&lt;div class="piano" data-start-key="16" data-end-key="64" data-white-key-width="auto"&gt;&lt;/div&gt;</code></pre>
                   </div>
                   <p>CSS:</p>
                   <div class="code-container">
@@ -239,18 +241,105 @@
             </div>
           </div>
         </section>
+
+        <section class="tabpanel" id="/sections/events">
+          <h2>Events</h2>
+          <p>Add event listeners to the keyboard to see which keys are pressed/released.</p>
+          <div class="tab-container -vertical">
+            <nav class="tabs tab-items">
+              <ul class="items">
+                <li class="item tab-item -active">
+                  <a class="link" href="#/sections/events/listeners">Listeners</a>
+                </li><li class="item tab-item">
+                  <a class="link" href="#/sections/events/sounds">Sounds</a>
+                </li>
+              </ul>
+            </nav>
+            <div class="panels">
+              <section class="tabpanel -active" id="/sections/events/listeners">
+                <h3>Listeners</h3>
+                <div class="piano" data-action="log" data-log="/sections/events/listeners/log" id="/sections/events/listeners/keyboard" data-start-key="16" data-end-key="64" data-white-key-width="auto"></div>
+                <div class="split-container">
+                  <div class="panel first">
+                    <div class="source-code">
+                      <p>HTML</p>
+                      <div class="code-container">
+                        <pre><code>&lt;div class="piano" data-start-key="16" data-end-key="64" data-white-key-width="auto"&gt;&lt;/div&gt;</code></pre>
+                      </div>
+                      <p>JavaScript</p>
+                      <div class="code-container">
+                        <pre><code>// ...more code here...
+
+pianoKeyboard.addEventListener('noteon', function onNoteOn(e) {
+  log.value += e.pitch + e.octave + ' ';
+});
+
+// ...more code here...</code></pre>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="panel second">
+                    <label class="labeled-control">
+                      <span class="label">Log</span>
+                      <textarea class="control" name="log" id="/sections/events/listeners/log" rows="8" readonly></textarea>
+                      <button id="/sections/events/listeners/clear-log" data-action="clear" data-log="/sections/events/listeners/log">Clear Log</button>
+                    </label>
+                  </div>
+                </div>
+              </section>
+              <section class="tabpanel" id="/sections/events/sounds">
+                <h3>Sounds</h3>
+                <p>WebMIDI provides the sounds for this keyboard. It is possible to use other sound libraries for the keyboard.</p>
+                <div class="piano -sound" id="/sections/events/sounds/keyboard" data-start-key="16" data-end-key="64" data-white-key-width="auto"></div>
+                <div class="source-code">
+                  <p>HTML</p>
+                  <div class="code-container">
+                    <pre><code>&lt;div class="piano" data-start-key="16" data-end-key="64" data-white-key-width="auto"&gt;&lt;/div&gt;</code></pre>
+                  </div>
+                  <p>JavaScript</p>
+                  <div class="code-container">
+                    <pre><code>var pianoKeyboard = document.getElementById('piano'),
+    keyNumberAdjust = 20, // In MIDI, Middle C = 60. piano-keyboard has Middle C = 40
+    maxVelocity = 127,
+    channel = 1;
+
+WebMidi.enable(function (err) {
+  if (!!err) {
+    return;
+  }
+
+  output = WebMidi.outputs[0];
+
+  if (!output) {
+    return;
+  }
+
+  pianoKeyboard.addEventListener('noteon', function onNoteOn(e) {
+    output.playNote(e.key + keyNumberAdjust, channel, { velocity: e.velocity / maxVelocity });
+  });
+
+  pianoKeyboard.addEventListener('noteoff', function onNoteOff(e) {
+    output.stopNote(e.key + keyNumberAdjust, channel, { velocity: e.velocity / maxVelocity });
+  });
+});</code></pre>
+                  </div>
+                </div>
+              </section>
+            </div>
+          </div>
+        </section>
       </div>
     </div>
   </div>
 </main>
 
-<script src="node_modules/webmidi/webmidi.min.js"></script>
+<script src="webmidi.min.js"></script>
 <script src="build/piano-keyboard.min.js"></script>
 
 <script src="init.js"></script>
 <script src="tabs.js"></script>
-<!-- This is for adding sounds with WebMIDI, see http://npmjs.com/package/webmidi -->
-<!--<script src="sounds.js"></script>-->
+<script src="listeners.js"></script>
+<script src="sounds.js"></script>
 
 </body>
 </html>
